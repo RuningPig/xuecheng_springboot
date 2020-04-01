@@ -1,7 +1,7 @@
 package com.xuecheng.manage_cms.controller;
 
 import com.xuecheng.framework.web.BaseController;
-import com.xuecheng.manage_cms.service.PageService;
+import com.xuecheng.manage_cms.service.CmsPageService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +19,12 @@ import java.io.IOException;
 public class CmsPagePreviewController extends BaseController {
 
     @Autowired
-    private PageService pageService;
+    private CmsPageService cmsPageService;
 
     //接受页面id
     @RequestMapping(value="/cms/preview/{pageId}",method = RequestMethod.GET)
     public void preview(@PathVariable("pageId")String pageId){
-        String pageHtml = pageService.getPageHtml(pageId);
+        String pageHtml = cmsPageService.getPageHtml(pageId);
         if (StringUtils.isNotEmpty(pageHtml)) {
             try {
                 ServletOutputStream outputStream = response.getOutputStream();
